@@ -1,10 +1,13 @@
-import express from "express";
+const express = require('express');
+const setupDB = require('./utils/database');
+
+const authRoutes = require('./Routes/auth')
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("connected");
-});
+app.use(authRoutes)
+
+setupDB();
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
